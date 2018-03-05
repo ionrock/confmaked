@@ -45,6 +45,38 @@ If you wanted to install a binary you might write something like:
 	apt install nginx
 ```
 
+If you wanted to write a config file you might do something like this:
+
+```
+config_data:
+	wget -r https://config.internal.myorg.io/path/to/app/
+
+/etc/myapp.conf:
+	we -d config_data --template config_data/etc/myapp.conf.tmpl
+```
+
+Shameless plug. I wrote a tool called
+[we](https://github.com/ionrock/we) that can read YAML/JSON and inject
+it as environment variables or write a config before running a
+command. So that is what is happening. You could also just download a
+config file and build it ahead of time.
+
+```
+/etc/myapp.conf:
+	curl -o /etc/myapp.conf https://config.internal.myorg.io/myapp.conf
+```
+
+You can start up services pretty easily since tools like systemd
+should be OK with the noop if its already started.
+
+```
+start_myapp:
+	service myapp start
+```
+
+There are a lot of good resources for how to be creative with
+Makefiles so I'll leave it up to you to learn more there.
+
 ## How do I use it?
 
 The idea is you run `confmaked` with a set of configured
@@ -68,6 +100,21 @@ It will just call `make` in the directory at the moment. I'm sure I'll
 eventually allow adding specific targets pretty soon here.
 
 That is pretty much it.
+
+You can also copy the Makefiles in to a container and get the same
+behavior.
+
+```
+FROM ubuntu
+
+RUN apt-get update && apt-get install -yq make
+ADD confmaked /usr/local/bin/confmaked
+ADD myapp.conf /etc/confmaked.yml
+RUN confmaked --config /etc/confmaked.yml
+```
+
+Feel free to swap `docker` with `packer` or `vagrant` or `terraform`
+and you can hopefully see how this might be a sort of OK idea.
 
 ## Seriously?
 
