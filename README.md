@@ -1,5 +1,7 @@
 # Confmaked
 
+**NOTE: This is just an initial proof of concept!**
+
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en"
 dir="ltr">Has no one built a config management system around Makefiles
 yet? It always seemed like a natural fit.</p>&mdash; ionrock
