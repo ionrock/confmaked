@@ -1,0 +1,2 @@
+- name: foo
+  url: ./example/fooconf/Makefile
