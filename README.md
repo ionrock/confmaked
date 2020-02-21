@@ -12,8 +12,8 @@ href="https://twitter.com/ionrock/status/969082259499372544?ref_src=twsrc%5Etfw"
 Often times configuration management systems attempt to avoid
 duplicating work. For example, [chef](https://chef.io) has a somewhat
 complex two-phase compilation mode that will create a dependency graph
-before actually running the cookbooks. This gets really copmlicated
-and confusing, especially if you're not interested in learning the DLS
+before actually running the cookbooks. This gets really complicated
+and confusing, especially if you're not interested in learning the DSL
 or YAML of your configuration management system of choice.
 
 Developers have been dealing with avoiding extra work for a very long
